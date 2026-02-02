@@ -4,17 +4,24 @@
     <meta charset="UTF-8">
     <title>Game Haven</title>
 
-    <!-- Link CSS directly from GitHub raw -->
-    <link rel="stylesheet" href="https://raw.githubusercontent.com/marlwolf606-dev/GameHaven/main/style.css">
+    <!-- CSS via jsDelivr -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/marlwolf606-dev/GameHaven@main/style.css">
 </head>
 <body>
     <div class="container">
         <div class="bubbles">
-            <!-- your spans here -->
+            <!-- Your span elements go here -->
+            <span style="--i:73; left: 0vh;"></span>
+            <span style="--i:118; left: 2vh;"></span>
+            <span style="--i:41; left: 4vh;"></span>
+            <span style="--i:96; left: 6vh;"></span>
+            <span style="--i:22; left: 8vh;"></span>
+            <!-- Add all remaining bubble spans -->
         </div>
     </div>
 
     <input type="file" id="fileInput" accept=".html">
+
     <div class="glassbackground">
         <h1 id="mainPageTitle">Game Haven</h1>
     </div>
@@ -30,7 +37,7 @@
     <div class="gameSection" id="n64">
         <div class="grid-container">
             <div class="Game">
-                <img class="game_thumbnail" src="https://raw.githubusercontent.com/marlwolf606-dev/GameHaven/main/Super_Mario_64.png">
+                <img class="game_thumbnail" src="https://cdn.jsdelivr.net/gh/marlwolf606-dev/GameHaven@main/Super_Mario_64.png">
                 <div class="blur">
                     <h2 class="titletext">Super Mario 64</h2>
                 </div>
@@ -42,8 +49,8 @@
 
     <div id="GameContainer"></div>
 
-    <!-- Include JS directly from GitHub raw -->
-    <script src="https://raw.githubusercontent.com/marlwolf606-dev/GameHaven/main/script.js"></script>
+    <!-- JS via jsDelivr -->
+    <script src="https://cdn.jsdelivr.net/gh/marlwolf606-dev/GameHaven@main/script.js"></script>
 
     <script>
     // File import feature stays inline
