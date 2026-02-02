@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game Haven</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Chewy&family=Knewave&display=swap');
+
+        h1{
+            color: white;
+        }
+
+        #mainPageTitle{
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            font-size: 50px;
+            position: relative;
+            top: -35px;
+        }
+
+        body{
+            background-color: black;
+        }
+
+        .container{
+            position: absolute;
+            width:100%;
+            height: 100vh;
+            overflow: hidden;
+            z-index: -100;
+        }
+
+        .bubbles{
+            position: fixed;
+            display: flex;
+        }
+
+        .bubbles span{
+            position: fixed;
+            width: 30px;
+            height: 30px;
+            background: #fefefe;
+            margin: 0 4px;
+            border-radius: 50%;
+            box-shadow: 0 0 0 10px #ffffff44,
+                        0 0 50px #fefefe,
+                        0 0 100px #fefefe;
+            animation: animate 15s linear infinite;
+            animation-duration: calc(750s / var(--i));
+        }
+
+        .bubbles span:nth-child(even){
+            background: #fefefe;
+            box-shadow: 0 0 0 10px #fefefe44,
+                        0 0 100px #fefefe,
+                        0 0 100px #fefefe;
+        }
+
+        @keyframes animate {
+            0% {transform: translateY(100vh) scale(0);}
+            100% {transform: translateY(-10vh) scale(1);}
+        }
+
+        .glassbackground{
+            width: 350px;
+            height: 60px;
+            background-color: rgba(0, 0, 0, 0.35);
+            border: 2px solid rgb(171, 171, 171);
+            border-radius: 10px;
+            backdrop-filter: blur(25px);
+            position: sticky;
+            left: 40%;
+            top: 10px;
+            transition: 0.5s;
+        }
+
+        .glassbackground:hover{
+            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.35);
+        }
+
+        .game{
+            margin-top: 10px;
+            margin-left: 10px;
+            width: 170px;
+            height: 215px;
+            background-color: rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(25px);
+            border: 2px solid rgba(255, 255, 255, 0.75);
+            border-radius: 10px;
+        }
+
+        .game img{
+            width: 150px;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            position: relative;
+            left: 6%;
+            top: 4%;
+            border-radius: 10px;
+        }
+
+        .game button{
+            position: relative;
+            top: 15px;
+            left: 9px;
+            background-color: rgba(0, 0, 0, 0.25);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            height: 45px;
+            transition: 0.25s;
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            border-radius: 10px;
+        }
+
+        .game button:nth-child(2),
+        .game button:nth-child(3){
+            width: 75px;
+        }
+
+        .game button:hover{
+            background-color: rgba(154, 154, 154, 0.25);
+        }
+
+        .game div{
+            position: absolute;
+            top: 9px;
+            left: 10px;
+            font-size: 10px;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            width: 148px;
+            height: 148px;
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            border-radius: 10px;
+        }
+
+        .game div h2{
+            position: absolute;
+            text-align: center;
+            top: 7%;
+            font-size: 30px;
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: white;
+        }
+
+        .grid-container {
+          display: grid;
+          grid-template-columns: repeat(9, 1fr);
+          gap: 0px;
+          width: 100%;
+          padding: 20px;
+          transition: 0.4s;
+          position: relative;
+          top: -25px;
+        }
+
+        .toggle-games {
+            background-color: rgba(0, 0, 0, 0.25);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            height: 35px;
+            width: 175px;
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            border-radius: 10px;
+            position: relative;
+            left: 30px;
+            top: 15px;
+            font-size: 20px;
+            transition: 0.25s;
+        }
+
+        .toggle-games:hover {
+            background-color: rgba(255, 255, 255, 0.25);
+        }
+
+        .gameTitle {
+            position: relative;
+            background-color: rgba(0, 0, 0, 0.25);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            height: 30px;
+            width: 87%;
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            border-radius: 10px;
+            top: -20px;
+            left: 238px;
+        }
+
+        .gameTitle h3{
+            font-size: 20px;
+            position: relative;
+            top: -17px;
+            text-align: center;
+        }
+
+        #fileInput{
+            color: white;
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            position: fixed;
+            left: 40px;
+            top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="bubbles">
+            <!-- bubbles spans omitted for brevity; include all your spans here -->
+        </div>
+    </div>
+
+    <input type="file" id="fileInput" accept=".html">
+
+    <div class="glassbackground">
+        <h1 id="mainPageTitle">Game Haven</h1>
+    </div>
+
+    <button class="toggle-games" data-target="#n64" id="emulation_dropdown" data-show="Show" data-hide="Hide">
+        Show
+    </button>
+
+    <div class="gameTitle">
+        <h3>Nintendo 64 Games</h3>
+    </div>
+
+    <div class="gameSection" id="n64">
+        <div class="grid-container">
+            <div class="Game">
+                <img class="game_thumbnail" src="Super_Mario_64.png">
+                <div class="blur">
+                    <h2 class="titletext">Super Mario 64</h2>
+                </div>
+                <button class="playButton" data-game="SM64">Play</button>
+                <button class="downloadButton" data-game="SM64">Download</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="GameContainer"></div>
+
+    <script>
+        // File input functionality
+        document.getElementById("fileInput").addEventListener("change", function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const htmlContent = e.target.result;
+                const blob = new Blob([htmlContent], { type: "text/html" });
+                const url = URL.createObjectURL(blob);
+                window.open(url, "_blank");
+            };
+            reader.readAsText(file);
+        });
+
+        // Toggle sections
+        document.addEventListener("DOMContentLoaded", () => {
+            const toggles = document.querySelectorAll(".toggle-games");
+            toggles.forEach(button => {
+                const container = document.querySelector(button.dataset.target);
+                if (!container) return;
+                const items = Array.from(container.children);
+                const stagger = 70;
+                const itemDuration = 300;
+                const containerDuration = 400;
+                let isAnimating = false;
+                container.style.display = "grid";
+                container.style.overflow = "hidden";
+                container.style.maxHeight = "0px";
+                items.forEach(item => {
+                    item.style.opacity = "0";
+                    item.style.transform = "translateY(12px)";
+                });
+                button.addEventListener("click", () => {
+                    if (isAnimating) return;
+                    isAnimating = true;
+                    const opening = container.style.maxHeight === "0px";
+                    const totalItemTime = items.length * stagger + itemDuration;
+                    if (opening) {
+                        container.style.maxHeight = container.scrollHeight + "px";
+                        button.textContent = button.dataset.hide
+                        items.forEach((item, i) => {
+                            item.style.transitionDelay = `${i * stagger}ms`;
+                            item.style.opacity = "1";
+                            item.style.transform = "translateY(0)";
+                        });
+                        setTimeout(() => {
+                            container.style.maxHeight = "none";
+                            isAnimating = false;
+                        }, Math.max(totalItemTime, containerDuration));
+                    } else {
+                        [...items].reverse().forEach((item, i) => {
+                            item.style.transitionDelay = `${i * stagger}ms`;
+                            item.style.opacity = "0";
+                            item.style.transform = "translateY(12px)";
+                        });
+                        setTimeout(() => {
+                            container.style.maxHeight = container.scrollHeight + "px";
+                            requestAnimationFrame(() => {
+                                container.style.maxHeight = "0px";
+                            });
+                        }, totalItemTime);
+                        setTimeout(() => {
+                            isAnimating = false;
+                        }, totalItemTime + containerDuration);
+                        button.textContent = button.dataset.show;
+                    }
+                });
+            });
+        });
+
+        // Play and Download buttons
+        document.addEventListener("DOMContentLoaded", () => {
+            const buildLink = (filename) => `https://cdn.jsdelivr.net/gh/marlwolf606-dev/GHMain/${filename}.html`;
+
+            const playButtons = document.querySelectorAll(".playButton");
+            playButtons.forEach(button => {
+                button.addEventListener("click", async () => {
+                    const gameName = button.dataset.game;
+                    if (!gameName) return;
+                    const jsdelivrLink = buildLink(gameName);
+                    try {
+                        const response = await fetch(jsdelivrLink);
+                        if (!response.ok) throw new Error("File not found on jsDelivr");
+                        const code = await response.text();
+                        const newTab = window.open("about:blank", "_blank");
+                        newTab.document.open();
+                        newTab.document.write(`<title>${gameName}.html</title>${code}`);
+                        newTab.document.close();
+                    } catch (err) {
+                        console.error("Error loading game file:", err);
+                    }
+                });
+            });
+
+            const downloadButtons = document.querySelectorAll(".downloadButton");
+            downloadButtons.forEach(button => {
+                button.addEventListener("click", async () => {
+                    const gameName = button.dataset.game;
+                    if (!gameName) return;
+                    const jsdelivrLink = buildLink(gameName);
+                    try {
+                        const response = await fetch(jsdelivrLink);
+                        if (!response.ok) throw new Error("File not found on jsDelivr");
+                        const blob = await response.blob();
+                        const a = document.createElement("a");
+                        a.href = URL.createObjectURL(blob);
+                        a.download = `${gameName}.html`;
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                    } catch (err) {
+                        console.error("Error downloading game file:", err);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
