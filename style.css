@@ -1,0 +1,220 @@
+@import url('https://fonts.googleapis.com/css2?family=Chewy&family=Knewave&display=swap');
+
+h1{
+    color: white;
+}
+
+#mainPageTitle{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    font-size: 50px;
+    position: relative;
+    top: -35px;
+}
+
+body{
+    background-color: black;
+}
+
+.container{
+    position: absolute;
+    width:100%;
+    height: 100vh;
+    overflow: hidden;
+    z-index: -100;
+}
+
+.bubbles{
+    position: fixed;
+    display: flex;
+}
+
+.bubbles span{
+    position: fixed;
+    width: 30px;
+    height: 30px;
+    background: #fefefe;
+    margin: 0 4px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 10px #ffffff44,
+    0 0 50px #fefefe,
+    0 0 100px #fefefe;
+    animation: animate 15s linear infinite;
+    animation-duration: calc(750s / var(--i));
+}
+
+.bubbles span:nth-child(even){
+    background: #fefefe;
+    box-shadow: 0 0 0 10px #fefefe44,
+    0 0 100px #fefefe,
+    0 0 100px #fefefe;
+}
+
+@keyframes animate {
+    0%
+    {transform: translateY(100vh) scale(0);}
+
+    100%
+    {
+        transform: translateY(-10vh) scale(1);
+    }
+}
+
+.glassbackground{
+    width: 350px;
+    height: 60px;
+    background-color: rgba(0, 0, 0, 0.35);
+    border: 2px solid rgb(171, 171, 171);
+    border-radius: 10px;
+    backdrop-filter: blur(25px);
+    position: sticky;
+    left: 40%;
+    top: 10px;
+    transition: 0.5s;
+}
+
+.glassbackground:hover{
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.35);
+}
+
+.game{
+    margin-top: 10px;
+    margin-left: 10px;
+    width: 170px;
+    height: 215px;
+    background-color: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(25px);
+    border: 2px solid rgba(255, 255, 255, 0.75);
+    border-radius: 10px;
+}
+
+.game img{
+    width: 150px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    position: relative;
+    left: 6%;
+    top: 4%;
+    border-radius: 10px;
+    
+}
+
+.game button{
+    position: relative;
+    top: 15px;
+    left: 9px;
+
+    
+    background-color: rgba(0, 0, 0, 0.25);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    height: 45px;
+    transition: 0.25s;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-radius: 10px;
+}
+
+.game button:nth-child(2){
+    width: 75px;
+    
+}
+
+
+.game button:nth-child(3){
+    width: 75px;
+}
+
+
+.game button:hover{
+    background-color: rgba(154, 154, 154, 0.25);
+}
+
+.game div{
+    position: absolute;
+    top: 9px;
+    left: 10px;
+    font-size: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    width: 148px;
+    height: 148px;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    border-radius: 10px;
+}
+
+.game div h2{
+    position: absolute;
+    text-align: center;
+    top: 7%;
+    font-size: 30px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr); /* 4 columns across the screen */
+  gap: 0px;
+  width: 100%;
+  padding: 20px;
+  transition: 0.4s;
+  position: relative;
+  top: -25px;
+  transform: 0.25s;
+}
+
+
+
+.toggle-games {
+     background-color: rgba(0, 0, 0, 0.25);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    height: 35px;
+    width: 175px;
+    transition: 0.25s;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-radius: 10px;
+
+    position: relative;
+    left: 30px;
+    top: 15px;
+    font-size: 20px;
+    transition: 0.25s;
+}
+
+.toggle-games:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+.gameTitle {
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.25);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    height: 30px;
+    width: 87%;
+    transition: 0.25s;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-radius: 10px;
+    top: -20px;
+    left: 238px;
+}
+
+.gameTitle h3{
+    font-size: 20px;
+
+    position: relative;
+    top: -17px;
+    text-align: center;
+}
+
+#fileInput{
+    color: white;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+    position: fixed;
+    left: 40px;
+    top: 50px;
+}
