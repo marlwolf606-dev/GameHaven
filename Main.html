@@ -1,8 +1,9 @@
 <html>
     <head>
         <title>Game Haven</title>
+
         <style>
-                @import url('https://fonts.googleapis.com/css2?family=Chewy&family=Knewave&display=swap');
+            @import url('https://fonts.googleapis.com/css2?family=Chewy&family=Knewave&display=swap');
 
 h1{
     color: white;
@@ -340,29 +341,6 @@ body{
             </div>
         </div>
 
-        <input type="file" id="fileInput" accept=".html">
-<script>
-document.getElementById("fileInput").addEventListener("change", function(e) {
-    const file = e.target.files[0];
-    if (!file) return;
-
-    const reader = new FileReader();
-    reader.onload = function(e) {
-        const htmlContent = e.target.result;
-
-        // Create a blob
-        const blob = new Blob([htmlContent], { type: "text/html" });
-
-        // Create a URL for the blob
-        const url = URL.createObjectURL(blob);
-
-        // Open in new tab
-        window.open(url, "_blank");
-    };
-    reader.readAsText(file);
-});
-</script>
-
 
 
         <div class="glassbackground">
@@ -391,6 +369,36 @@ document.getElementById("fileInput").addEventListener("change", function(e) {
                     </div>
                 </div>
             </div>
+  <input type="file" id="fileInput" accept=".html,.htm">
+  <button id="runButton">Run File</button>
+
+  <script>
+    const fileInput = document.getElementById("fileInput");
+    const runButton = document.getElementById("runButton");
+
+    runButton.addEventListener("click", () => {
+      const file = fileInput.files[0];
+      if (!file) {
+        alert("Please select a file first!");
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        const blob = new Blob([reader.result], { type: "text/html" });
+        const url = URL.createObjectURL(blob);
+        window.open(url, "_blank");
+        // Optionally revoke URL after a short delay
+        setTimeout(() => URL.revokeObjectURL(url), 10000);
+      };
+
+      reader.onerror = () => {
+        alert("Failed to read file!");
+      };
+
+      reader.readAsText(file);
+    });
+  </script>
 
 
            
